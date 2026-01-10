@@ -1,0 +1,278 @@
+/**
+ * Safha - Premium Design System
+ * 
+ * A sophisticated, hand-crafted design system that avoids generic AI aesthetics.
+ * Built for a modern, professional feel with subtle animations and refined typography.
+ */
+
+@import "tailwindcss";
+
+/* ============================================
+   DESIGN TOKENS - The DNA of our visual language
+   ============================================ */
+
+:root {
+  /* 
+   * Color Philosophy: Warm neutrals with a rich accent.
+   * Avoiding cold grays and generic blues. Instead, we use
+   * warm stone tones and a deep teal/emerald accent.
+   */
+  
+  /* Primary Brand - Deep Teal (sophisticated, trustworthy) */
+  --color-primary-50: 166 76% 97%;
+  --color-primary-100: 167 70% 92%;
+  --color-primary-200: 168 64% 82%;
+  --color-primary-300: 170 55% 68%;
+  --color-primary-400: 172 48% 52%;
+  --color-primary-500: 173 58% 39%;
+  --color-primary-600: 175 65% 31%;
+  --color-primary-700: 176 70% 25%;
+  --color-primary-800: 177 72% 20%;
+  --color-primary-900: 178 75% 16%;
+  
+  /* Warm Stone - Our neutral palette (not cold grays) */
+  --color-stone-50: 60 9% 98%;
+  --color-stone-100: 60 5% 96%;
+  --color-stone-200: 20 6% 90%;
+  --color-stone-300: 24 6% 83%;
+  --color-stone-400: 24 5% 64%;
+  --color-stone-500: 25 5% 45%;
+  --color-stone-600: 33 5% 32%;
+  --color-stone-700: 30 6% 25%;
+  --color-stone-800: 12 6% 15%;
+  --color-stone-900: 24 10% 10%;
+  --color-stone-950: 20 14% 4%;
+  
+  /* Accent - Warm Amber for highlights and CTAs */
+  --color-accent-400: 38 92% 60%;
+  --color-accent-500: 35 92% 50%;
+  --color-accent-600: 32 95% 44%;
+  
+  /* Semantic Colors */
+  --color-success: 158 64% 40%;
+  --color-warning: 43 96% 56%;
+  --color-error: 0 84% 60%;
+  
+  /* Surfaces & Backgrounds */
+  --bg-primary: var(--color-stone-50);
+  --bg-secondary: var(--color-stone-100);
+  --bg-elevated: 0 0% 100%;
+  --bg-overlay: 0 0% 0% / 0.4;
+  
+  /* Text Colors */
+  --text-primary: var(--color-stone-900);
+  --text-secondary: var(--color-stone-600);
+  --text-muted: var(--color-stone-400);
+  --text-inverse: var(--color-stone-50);
+  
+  /* Borders */
+  --border-subtle: var(--color-stone-200);
+  --border-default: var(--color-stone-300);
+  --border-strong: var(--color-stone-400);
+  
+  /* Spacing Scale (consistent rhythm) */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  
+  /* Border Radius (slightly rounded, not bubbly) */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  
+  /* Shadows (soft, layered depth) */
+  --shadow-xs: 0 1px 2px hsl(var(--color-stone-900) / 0.04);
+  --shadow-sm: 0 1px 3px hsl(var(--color-stone-900) / 0.06), 0 1px 2px hsl(var(--color-stone-900) / 0.04);
+  --shadow-md: 0 4px 6px hsl(var(--color-stone-900) / 0.05), 0 2px 4px hsl(var(--color-stone-900) / 0.03);
+  --shadow-lg: 0 10px 15px hsl(var(--color-stone-900) / 0.06), 0 4px 6px hsl(var(--color-stone-900) / 0.03);
+  --shadow-xl: 0 20px 25px hsl(var(--color-stone-900) / 0.08), 0 8px 10px hsl(var(--color-stone-900) / 0.04);
+  
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', var(--font-sans);
+  
+  /* Transitions (smooth but snappy) */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Dark Mode - Refined dark theme (not just inverted) */
+.dark {
+  --bg-primary: var(--color-stone-950);
+  --bg-secondary: var(--color-stone-900);
+  --bg-elevated: var(--color-stone-800);
+  
+  --text-primary: var(--color-stone-50);
+  --text-secondary: var(--color-stone-400);
+  --text-muted: var(--color-stone-500);
+  
+  --border-subtle: var(--color-stone-800);
+  --border-default: var(--color-stone-700);
+  --border-strong: var(--color-stone-600);
+  
+  --shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.2);
+  --shadow-sm: 0 1px 3px hsl(0 0% 0% / 0.3), 0 1px 2px hsl(0 0% 0% / 0.2);
+  --shadow-md: 0 4px 6px hsl(0 0% 0% / 0.25), 0 2px 4px hsl(0 0% 0% / 0.15);
+  --shadow-lg: 0 10px 15px hsl(0 0% 0% / 0.3), 0 4px 6px hsl(0 0% 0% / 0.15);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: hsl(var(--bg-primary));
+  color: hsl(var(--text-primary));
+  line-height: 1.6;
+  min-height: 100dvh;
+}
+
+/* Selection styling */
+::selection {
+  background-color: hsl(var(--color-primary-200));
+  color: hsl(var(--color-primary-900));
+}
+
+/* Focus states - accessible but beautiful */
+:focus-visible {
+  outline: 2px solid hsl(var(--color-primary-500));
+  outline-offset: 2px;
+}
+
+/* ============================================
+   TYPOGRAPHY UTILITIES
+   ============================================ */
+
+.text-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.text-heading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.text-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.text-caption {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: hsl(var(--text-secondary));
+}
+
+/* ============================================
+   ANIMATION UTILITIES
+   ============================================ */
+
+/* Subtle entrance animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in var(--transition-base) ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up var(--transition-slow) ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in var(--transition-slow) ease-out;
+}
+
+/* Stagger children for list animations */
+.stagger-children > * {
+  animation: slide-up var(--transition-slow) ease-out backwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 50ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 100ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 150ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 200ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 250ms; }
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--color-stone-300));
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--color-stone-400));
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: hsl(var(--color-stone-600));
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--color-stone-500));
+}
