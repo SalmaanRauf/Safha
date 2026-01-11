@@ -43,11 +43,10 @@ export function Sidebar({ user, role }: SidebarProps) {
     ]
 
     const orgNav = [
-        { href: '/dashboard', label: 'Dashboard', icon: Home },
-        { href: '/org/volunteers', label: 'Volunteers', icon: Users },
+        { href: '/org', label: 'Dashboard', icon: Home },
         { href: '/org/opportunities', label: 'Opportunities', icon: Calendar },
-        { href: '/org/create', label: 'Create New', icon: PlusCircle },
-        { href: '/org/settings', label: 'Settings', icon: Settings },
+        { href: '/org/opportunities/new', label: 'Create New', icon: PlusCircle },
+        { href: '/profile', label: 'Profile', icon: UserIcon },
     ]
 
     const adminNav = [
