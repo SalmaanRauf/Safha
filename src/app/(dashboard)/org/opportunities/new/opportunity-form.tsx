@@ -61,6 +61,7 @@ export function OpportunityForm({ organizationId, initialData }: OpportunityForm
     const [locationType, setLocationType] = useState(initialData?.location_type || 'in-person')
     const [skills, setSkills] = useState<string[]>(initialData?.skills_needed || [])
     const [skillInput, setSkillInput] = useState('')
+    const [publishMode, setPublishMode] = useState<'published' | 'draft'>('draft')
 
     const isEditing = !!initialData
 
@@ -85,7 +86,7 @@ export function OpportunityForm({ organizationId, initialData }: OpportunityForm
             max_volunteers: formData.get('maxVolunteers')
                 ? parseInt(formData.get('maxVolunteers') as string)
                 : null,
-            status: formData.get('publish') ? 'published' : 'draft',
+            status: publishMode,
         }
 
         if (!category) {
@@ -322,10 +323,9 @@ export function OpportunityForm({ organizationId, initialData }: OpportunityForm
             <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-[hsl(var(--border-subtle))]">
                 <Button
                     type="submit"
-                    name="publish"
-                    value="true"
                     className="flex-1"
                     isLoading={isPending}
+                    onClick={() => setPublishMode('published')}
                 >
                     {isEditing ? 'Update & Publish' : 'Publish Opportunity'}
                 </Button>
@@ -334,6 +334,7 @@ export function OpportunityForm({ organizationId, initialData }: OpportunityForm
                     variant="secondary"
                     className="flex-1"
                     isLoading={isPending}
+                    onClick={() => setPublishMode('draft')}
                 >
                     {isEditing ? 'Save as Draft' : 'Save Draft'}
                 </Button>
