@@ -280,7 +280,8 @@ export default function LandingPage() {
           <Link href="/signup">
             <Button
               size="lg"
-              className="bg-white text-[hsl(var(--color-primary-800))] hover:bg-[hsl(var(--color-primary-50))] hover:text-[hsl(var(--color-primary-900))] border-none shadow-lg"
+              className="bg-white hover:bg-gray-50 border-none shadow-lg"
+              style={{ color: '#166534' }}
             >
               Create Your Free Account
               <ChevronRight className="w-4 h-4" />
