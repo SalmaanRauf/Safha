@@ -7,6 +7,7 @@
 
 import Link from 'next/link'
 import { Button } from '@/components/ui'
+import { Logo } from '@/components/ui/logo'
 import {
   Heart,
   Users,
@@ -14,7 +15,10 @@ import {
   ChevronRight,
   MapPin,
   Clock,
-  TrendingUp
+  TrendingUp,
+  UserPlus,
+  Search,
+  Award
 } from 'lucide-react'
 
 export default function LandingPage() {
@@ -23,9 +27,7 @@ export default function LandingPage() {
       {/* Navigation */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[hsl(var(--bg-primary)/0.8)] backdrop-blur-md border-b border-[hsl(var(--border-subtle))]">
         <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link href="/" className="text-display text-xl text-[hsl(var(--color-primary-600))]">
-            صفحة
-          </Link>
+          <Logo />
 
           <div className="hidden md:flex items-center gap-8">
             <Link href="#features" className="text-sm text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] transition-colors">
@@ -112,8 +114,41 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-display text-3xl sm:text-4xl text-[hsl(var(--text-primary))] mb-4">
+              How it works
+            </h2>
+            <p className="text-[hsl(var(--text-secondary))] max-w-2xl mx-auto">
+              Start your volunteering journey in three simple steps.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 relative">
+            {/* Connecting line (desktop only) */}
+            <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-[hsl(var(--border-subtle))] z-0" />
+
+            {[
+              { icon: UserPlus, title: 'Create Account', desc: 'Sign up as a volunteer or organization in seconds.' },
+              { icon: Search, title: 'Find Opportunities', desc: 'Browse local events matching your skills and interests.' },
+              { icon: Award, title: 'Make an Impact', desc: 'Volunteer, log stats, and track your contribution.' }
+            ].map((step, i) => (
+              <div key={i} className="relative z-10 flex flex-col items-center text-center">
+                <div className="w-24 h-24 rounded-full bg-white border border-[hsl(var(--border-subtle))] flex items-center justify-center mb-6 shadow-sm">
+                  <step.icon className="w-10 h-10 text-[hsl(var(--color-primary-600))]" />
+                </div>
+                <h3 className="text-xl font-bold text-[hsl(var(--text-primary))] mb-3">{step.title}</h3>
+                <p className="text-[hsl(var(--text-secondary))] max-w-xs">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-[hsl(var(--bg-secondary))]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-display text-3xl sm:text-4xl text-[hsl(var(--text-primary))] mb-4">
@@ -177,7 +212,7 @@ export default function LandingPage() {
           <Link href="/signup">
             <Button
               size="lg"
-              className="bg-white text-[hsl(var(--color-primary-700))] hover:bg-[hsl(var(--color-primary-50))]"
+              className="bg-white text-emerald-800 hover:bg-[hsl(var(--color-primary-50))] border-none"
             >
               Create Your Free Account
               <ChevronRight className="w-4 h-4" />
@@ -190,9 +225,7 @@ export default function LandingPage() {
       <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-[hsl(var(--border-subtle))]">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-display text-xl text-[hsl(var(--color-primary-600))]">
-              صفحة
-            </div>
+            <Logo />
             <p className="text-sm text-[hsl(var(--text-muted))]">
               © {new Date().getFullYear()} Safha. Built with care for communities.
             </p>

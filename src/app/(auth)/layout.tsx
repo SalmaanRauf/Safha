@@ -6,6 +6,8 @@
  */
 
 import Link from 'next/link'
+import { ChevronLeft } from 'lucide-react'
+import { Logo } from '@/components/ui/logo'
 
 export default function AuthLayout({
     children,
@@ -15,14 +17,20 @@ export default function AuthLayout({
     return (
         <div className="min-h-screen flex flex-col">
             {/* Simple header with logo */}
-            <header className="py-6 px-4">
-                <div className="max-w-md mx-auto">
+            {/* Simple header with logo and navigation */}
+            <header className="py-6 px-4 md:px-8">
+                <div className="max-w-7xl mx-auto flex items-center justify-between">
                     <Link
                         href="/"
-                        className="text-display text-xl text-[hsl(var(--color-primary-600))] hover:opacity-80 transition-opacity"
+                        className="flex items-center gap-2 text-sm font-medium text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--color-primary-600))] transition-colors"
                     >
-                        صفحة
+                        <ChevronLeft className="w-4 h-4" />
+                        Back to Home
                     </Link>
+
+                    <Logo />
+
+                    <div className="w-[100px]" /> {/* Spacer for centering if needed, or just empty */}
                 </div>
             </header>
 

@@ -25,6 +25,8 @@ import {
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
+import { Logo } from '@/components/ui/logo'
+
 interface SidebarProps {
     user: User
     role: string
@@ -70,9 +72,7 @@ export function Sidebar({ user, role }: SidebarProps) {
         <aside className="hidden lg:flex flex-col fixed left-0 top-0 bottom-0 w-64 bg-[hsl(var(--bg-elevated))] border-r border-[hsl(var(--border-subtle))]">
             {/* Logo */}
             <div className="h-16 flex items-center px-6 border-b border-[hsl(var(--border-subtle))]">
-                <Link href="/dashboard" className="text-display text-xl text-[hsl(var(--color-primary-600))]">
-                    صفحة
-                </Link>
+                <Logo href="/dashboard" />
             </div>
 
             {/* Navigation */}
