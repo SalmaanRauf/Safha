@@ -22,9 +22,14 @@ export default async function AdminAnalyticsPage() {
         redirect('/login')
     }
 
-    // Check if user is admin
-    const role = user.user_metadata?.role
-    if (role !== 'admin') {
+    // Check if user is admin (read from profiles table)
+    const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single() as { data: { role: string } | null }
+
+    if (profile?.role !== 'admin') {
         redirect('/dashboard')
     }
 
