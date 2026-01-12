@@ -23,8 +23,14 @@ export default async function DashboardLayout({
         redirect('/login')
     }
 
-    // Get user role from metadata
-    const role = user.user_metadata?.role || 'volunteer'
+    // Get user role from profiles table (not user_metadata)
+    const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single() as { data: { role: string } | null }
+
+    const role = profile?.role || 'volunteer'
 
     return (
         <div className="min-h-screen bg-[hsl(var(--bg-secondary))]">
@@ -43,3 +49,4 @@ export default async function DashboardLayout({
         </div>
     )
 }
+
