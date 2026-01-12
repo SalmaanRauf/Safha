@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { Card, CardContent } from '@/components/ui'
 import { ArrowLeft } from 'lucide-react'
-import { OpportunityForm } from '../new/opportunity-form'
+import { OpportunityForm } from '../../new/opportunity-form'
 
 interface PageProps {
     params: { id: string }
