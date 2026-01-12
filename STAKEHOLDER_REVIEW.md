@@ -1,197 +1,173 @@
-# Safha V1 — Stakeholder Review Guide
+# Safha - Testing Guide
 
-Hey! Thanks for taking the time to review Safha. This document will walk you through everything you need to test the platform.
+Hey! Here's everything you need to know to test Safha. I'll walk you through what it does, how to use it, and what to look out for.
 
-**Version:** 1.0  
-**Last Updated:** January 12, 2026
+## What is this app?
 
----
+Safha is a platform where volunteers can find opportunities and organizations can post them. Think of it like a marketplace connecting people who want to help with nonprofits that need volunteers.
 
-## What is Safha?
+There are three types of users:
+- **Volunteers** - People browsing for opportunities to sign up for
+- **Organizations** - Nonprofits posting volunteer events
+- **Admins** - Us behind the scenes, verifying orgs and managing the platform
 
-Safha (صفحة — meaning "Page" or "New Beginning" in Arabic) is a volunteer management platform that connects three types of users:
+## How to access it
 
-- **Volunteers** who want to find meaningful opportunities in their community
-- **Organizations** (nonprofits, community groups) looking for reliable volunteers
-- **Administrators** who oversee the platform and verify organizations
+Just go to **https://safha-kohl.vercel.app**
 
----
+## Logging in as Admin
 
-## Where to Access
+If you want to see the admin side of things:
+- Email: admin@gmail.com
+- Password: ADMINTESTING
 
-| Environment | URL |
-|-------------|-----|
-| **Live Site** | https://safha-kohl.vercel.app |
-
----
-
-## Test Accounts
-
-### Admin Login
-To access the admin portal, use these credentials:
-
-- **Email:** `admin@gmail.com`
-- **Password:** `ADMINTESTING`
-
-### Creating Your Own Accounts
-Feel free to create test accounts! Just head to the signup page and choose your role:
-- Pick **Volunteer** if you want to browse and sign up for opportunities
-- Pick **Organization** if you want to post volunteer opportunities
+Or create your own volunteer/organization account to test those flows.
 
 ---
 
-## Testing Each User Type
+## Testing as a Volunteer
 
-### 🙋 Testing as a Volunteer
+This is the main user experience. Here's how it works:
 
-**Getting Started:**
-1. Go to the site and click "Get Started" or "Sign Up"
-2. Choose "Volunteer" as your role
-3. Fill out the form (or use "Continue with Google" for faster signup)
+1. **Sign up** - Go to the signup page, pick "Volunteer", fill in your info. You can also just click "Continue with Google" if you want to skip the form.
 
-**What You Can Do:**
-- **Dashboard** — See your upcoming shifts and recommended opportunities at a glance
-- **Browse Opportunities** — Search and filter through all available volunteer events
-- **View Details** — Click any opportunity to see the full description, date, location, and organization info
-- **Sign Up** — Register for opportunities that interest you
-- **My Schedule** — Check what you've signed up for
-- **Profile** — Edit your personal information
+2. **Dashboard** - After logging in, you land on your dashboard. It shows upcoming shifts you've signed up for and some recommended opportunities.
 
-**Try This Flow:**
-1. Browse the opportunities page
-2. Find something interesting and click on it
-3. Sign up for a shift
-4. Check "My Schedule" to confirm it's there
+3. **Browse opportunities** - Click "Opportunities" in the sidebar to see what's available. You can search and scroll through events.
+
+4. **Sign up for something** - Click on any opportunity to see the full details (when, where, what you'll do). If there's room, you'll see a button to register.
+
+5. **Check your schedule** - After signing up, go to "My Schedule" to see everything you've committed to.
+
+Things to try:
+- Sign up for an opportunity and confirm it shows in your schedule
+- Edit your profile
+- Browse around and make sure everything loads properly
 
 ---
 
-### 🏢 Testing as an Organization
+## Testing as an Organization
 
-**Getting Started:**
-1. Create a new account and select "Organization"
-2. You'll be prompted to set up your organization profile first
+Organizations post opportunities for volunteers to find. Here's the flow:
 
-**What You Can Do:**
-- **Organization Dashboard** — Overview of your events, signups, and quick stats
-- **Setup Wizard** — Create your org profile (name, description, contact email, etc.)
-- **Create Opportunities** — Post new volunteer events with all the details
-- **Manage Opportunities** — Edit existing events, publish/unpublish them, view signups
-- **Track Volunteers** — See who's signed up for each event
+1. **Sign up** - Create an account and pick "Organization" as your role.
 
-**Try This Flow:**
-1. Complete the organization setup (name, description, contact info)
-2. Go to "Opportunities" and create a new one
-3. Fill in the event details (title, date, location, how many volunteers needed)
-4. Save as draft or publish right away
-5. View your opportunity in the list
-6. Try editing it and toggling the publish status
+2. **Set up your org** - You'll immediately get prompted to fill in your organization details (name, description, contact email, etc). This is required before you can do anything else.
 
-**Good to Know:**
-- New organizations start as *unverified* (pending admin review)
-- Once an admin verifies your org, you'll get a "Verified" badge
-- Unverified orgs can still create opportunities, they just might have less visibility
+3. **Create an opportunity** - Go to Opportunities → Create New. Fill in the event details: title, description, date, location, how many volunteers you need, etc.
+
+4. **Publish or save as draft** - You can save something as a draft if you're not ready to post it publicly yet.
+
+5. **View signups** - When volunteers register, you'll see them listed on the opportunity detail page.
+
+Things to try:
+- Create an opportunity and publish it
+- Check if it shows up when browsing as a volunteer
+- Edit an existing opportunity
+- Toggle between draft and published
+
+Note: New organizations start as "unverified". An admin has to verify them before they get full visibility. You'll see this badge in the admin portal.
 
 ---
 
-### 👩‍💼 Testing as an Admin
+## Testing as an Admin
 
-**Getting Started:**
-Use the admin credentials listed above to log in.
+This is where platform management happens. Log in with the admin credentials above.
 
-**What You Can Do:**
-- **Admin Dashboard** — See platform-wide stats: total users, organizations, pending verifications
-- **User Management** — Browse all users, filter by role (volunteer, organization, admin)
-- **Organization Management** — View all orgs and verify pending ones
-- **Analytics** — Platform health metrics and growth trends
+**Dashboard** - Quick stats on total users, organizations, and pending verifications.
 
-**Try This Flow:**
-1. Log in with the admin credentials
-2. Check out the dashboard stats
-3. Go to "Organizations" and look for any pending verification requests
-4. Click "Verify" on an organization to approve them
-5. Go to "Users" and try filtering by role
-6. Check out the Analytics page
+**Users** - Browse all registered users. You can filter by role (volunteer, organization, admin).
+
+**Organizations** - See all organizations. The main thing here is clicking "Verify" on any pending orgs to approve them.
+
+**Analytics** - Basic metrics and charts showing platform health.
+
+Things to try:
+- Create a new organization account, then log in as admin and verify it
+- Filter users by role
+- Check that the numbers on the dashboard make sense
 
 ---
 
-## Authentication Options
+## Authentication
 
-Users can sign in two ways:
+Users can sign up two ways:
+- Email and password (standard form)
+- Google OAuth (click "Continue with Google")
 
-✅ **Email & Password** — Traditional signup/login  
-✅ **Google Sign-In** — One-click authentication (configured and working!)
-
-Apple Sign-In is not enabled yet (requires Apple Developer account).
+Both work. Apple sign-in isn't enabled yet since it requires an Apple Developer account.
 
 ---
 
 ## The Landing Page
 
-The public landing page includes:
-1. **Hero Section** — Main headline with two CTAs (one for volunteers, one for organizations)
-2. **Platform Stats** — Shows volunteer count, organization count, and hours logged
-3. **How It Works** — Three-step guide explaining the user journey
-4. **Features** — Highlights for discovering opportunities, scheduling, and tracking impact
-5. **For Organizations** — Dedicated section explaining benefits for nonprofits
-6. **Final CTA** — "Create Your Free Account" button
-7. **Footer** — Branding and copyright
+The homepage at "/" has a few sections:
+- Hero with the main pitch and signup buttons
+- Some stats about the platform
+- "How it works" explaining the 3-step process
+- Features breakdown
+- A section specifically for organizations
+- Footer
+
+Make sure everything loads and the buttons work.
 
 ---
 
-## What's Working vs. What's Next
+## Known Limitations
 
-### Currently Working ✅
-- Full authentication flow (email + Google OAuth)
-- Volunteer browsing and signup
-- Organization creation and opportunity management
-- Admin dashboard with user/org management
-- Responsive design (works on mobile and desktop)
+These are things we know aren't working yet or are intentionally left for V2:
 
-### Coming in Future Versions
-- Email notifications for signups and reminders
-- Hours logging for volunteers
-- Waitlist functionality when events are full
-- Advanced search filters
-- Messaging between orgs and volunteers
+1. **No email notifications** - When you sign up for an event or an org gets verified, there's no email sent. That's manual for now.
+
+2. **No hours logging** - Volunteers can't track hours they've worked. Coming later.
+
+3. **No waitlist** - If an event is full, you just can't sign up. There's no waitlist queue.
+
+4. **Basic search** - You can search opportunities but there aren't advanced filters (by date, category, etc).
+
+5. **No messaging** - Volunteers and orgs can't message each other through the platform.
 
 ---
 
-## Quick Testing Checklist
+## Things to Watch For
 
-### Landing Page
-- [ ] Page loads with no visual issues
-- [ ] Navigation links work correctly
-- [ ] CTA buttons lead to signup/login
-
-### Authentication
-- [ ] Can sign up with email
-- [ ] Can sign in with Google
-- [ ] Can log in with existing account
-- [ ] "Back to Home" link works
-
-### Volunteer Experience
-- [ ] Dashboard shows stats and recommendations
-- [ ] Can browse opportunities
-- [ ] Can click into opportunity details
-- [ ] Can sign up for an opportunity
-- [ ] Schedule shows registered events
-
-### Organization Experience
-- [ ] Setup wizard works smoothly
-- [ ] Can create a new opportunity
-- [ ] Can save as draft vs. publish
-- [ ] Can edit existing opportunities
-- [ ] Can see volunteer signups
-
-### Admin Experience
-- [ ] Dashboard shows correct platform stats
-- [ ] Can view and filter users by role
-- [ ] Can view organizations
-- [ ] Can verify pending organizations
-- [ ] Analytics page loads
+While testing, keep an eye out for:
+- Any buttons that don't work or lead nowhere
+- Pages that take too long to load
+- Anything that looks broken on mobile
+- Error messages that don't make sense
+- Places where the design feels off
 
 ---
 
-## Questions or Issues?
+## Quick Checklist
 
-If you run into any bugs or have feedback, just let me know! Happy testing. 🎉
+**Landing page**
+- Does it load correctly?
+- Do all nav links work?
+- Do the signup/login buttons work?
+
+**Auth**
+- Can you sign up with email?
+- Can you sign up with Google?
+- Can you log back in?
+
+**Volunteer flow**
+- Does the dashboard load?
+- Can you browse opportunities?
+- Can you sign up for one?
+- Does it show in your schedule?
+
+**Org flow**
+- Does the setup wizard work?
+- Can you create and publish an opportunity?
+- Does it appear publicly?
+
+**Admin flow**
+- Does the dashboard show stats?
+- Can you view/filter users?
+- Can you verify an organization?
+
+---
+
+Let me know if you have any questions or run into issues!
