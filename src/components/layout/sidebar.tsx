@@ -50,11 +50,11 @@ export function Sidebar({ user, role }: SidebarProps) {
     ]
 
     const adminNav = [
-        { href: '/dashboard', label: 'Dashboard', icon: Home },
+        { href: '/admin', label: 'Dashboard', icon: Home },
         { href: '/admin/users', label: 'Users', icon: Users },
         { href: '/admin/organizations', label: 'Organizations', icon: Building2 },
         { href: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
-        { href: '/admin/settings', label: 'Settings', icon: Settings },
+        { href: '/profile', label: 'Profile', icon: UserIcon },
     ]
 
     const navItems = role === 'admin' ? adminNav : role === 'organization' ? orgNav : volunteerNav
