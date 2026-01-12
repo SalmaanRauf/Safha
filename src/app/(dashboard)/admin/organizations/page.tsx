@@ -27,9 +27,14 @@ export default async function AdminOrganizationsPage({
         redirect('/login')
     }
 
-    // Check if user is admin
-    const role = user.user_metadata?.role
-    if (role !== 'admin') {
+    // Check if user is admin (read from profiles table)
+    const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single() as { data: { role: string } | null }
+
+    if (profile?.role !== 'admin') {
         redirect('/dashboard')
     }
 
@@ -126,8 +131,8 @@ export default async function AdminOrganizationsPage({
                         key={tab.value}
                         href={`/admin/organizations${tab.value !== 'all' ? `?filter=${tab.value}` : ''}`}
                         className={`px-4 py-2 text-sm font-medium rounded-t-[var(--radius-md)] transition-colors ${currentFilter === tab.value
-                                ? 'bg-[hsl(var(--color-primary-50))] text-[hsl(var(--color-primary-700))] border-b-2 border-[hsl(var(--color-primary-600))]'
-                                : 'text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))]'
+                            ? 'bg-[hsl(var(--color-primary-50))] text-[hsl(var(--color-primary-700))] border-b-2 border-[hsl(var(--color-primary-600))]'
+                            : 'text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))]'
                             }`}
                     >
                         {tab.label} ({tab.count})
