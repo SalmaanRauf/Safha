@@ -18,7 +18,8 @@ import {
   TrendingUp,
   UserPlus,
   Search,
-  Award
+  Award,
+  Building2
 } from 'lucide-react'
 
 export default function LandingPage() {
@@ -195,6 +196,73 @@ export default function LandingPage() {
                 Log your hours, earn badges, and visualize your contribution over time.
                 See the collective impact of your community.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* For Organizations Section */}
+      <section id="for-orgs" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Text Content */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[hsl(var(--color-primary-50))] text-[hsl(var(--color-primary-700))] text-sm font-medium mb-6">
+                <Building2 className="w-4 h-4" />
+                For Organizations
+              </div>
+              <h2 className="text-display text-3xl sm:text-4xl text-[hsl(var(--text-primary))] mb-6">
+                Amplify your impact with dedicated volunteers
+              </h2>
+              <p className="text-lg text-[hsl(var(--text-secondary))] mb-8">
+                Safha helps nonprofits, community groups, and social enterprises
+                find reliable volunteers, manage events, and track contributions—all in one place.
+              </p>
+
+              <ul className="space-y-4 mb-8">
+                {[
+                  'Post unlimited volunteer opportunities',
+                  'Manage signups and attendance easily',
+                  'Get verified for increased visibility',
+                  'Access analytics and impact reports',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[hsl(var(--color-primary-100))] flex items-center justify-center">
+                      <ChevronRight className="w-3 h-3 text-[hsl(var(--color-primary-600))]" />
+                    </div>
+                    <span className="text-[hsl(var(--text-primary))]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Link href="/signup?role=organization">
+                <Button size="lg">
+                  Register Your Organization
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+
+            {/* Right: Visual/Stats */}
+            <div className="bg-[hsl(var(--bg-elevated))] rounded-[var(--radius-xl)] p-8 border border-[hsl(var(--border-subtle))]">
+              <h3 className="text-heading text-xl mb-6">Trusted by organizations</h3>
+              <div className="grid grid-cols-2 gap-6">
+                {[
+                  { value: '150+', label: 'Organizations' },
+                  { value: '2,500+', label: 'Volunteers' },
+                  { value: '45K+', label: 'Hours Logged' },
+                  { value: '98%', label: 'Satisfaction' },
+                ].map((stat, i) => (
+                  <div key={i} className="text-center p-4 rounded-[var(--radius-lg)] bg-[hsl(var(--bg-secondary))]">
+                    <div className="text-display text-2xl text-[hsl(var(--color-primary-600))] mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-[hsl(var(--text-secondary))]">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
