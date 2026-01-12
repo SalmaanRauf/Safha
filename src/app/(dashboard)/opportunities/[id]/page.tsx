@@ -98,15 +98,15 @@ export default async function OpportunityDetailPage({ params }: PageProps) {
 
     // Check if current user is registered
     const { data: { user } } = await supabase.auth.getUser()
-    let registration = null
+    let registration: { id: string; status: string } | null = null
 
     if (user) {
         const { data } = await supabase
             .from('registrations')
-            .select('*')
+            .select('id, status')
             .eq('opportunity_id', params.id)
             .eq('user_id', user.id)
-            .single()
+            .single() as { data: { id: string; status: string } | null }
         registration = data
     }
 

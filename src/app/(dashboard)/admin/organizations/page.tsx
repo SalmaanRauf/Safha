@@ -55,7 +55,18 @@ export default async function AdminOrganizationsPage({
         query = query.ilike('name', `%${searchParams.search}%`)
     }
 
-    const { data: organizations } = await query.limit(50)
+    const { data: organizations } = await query.limit(50) as {
+        data: Array<{
+            id: string
+            name: string
+            slug: string
+            description: string | null
+            contact_email: string | null
+            city: string | null
+            is_verified: boolean
+            created_at: string
+        }> | null
+    }
 
     // Get counts
     const { count: totalCount } = await supabase

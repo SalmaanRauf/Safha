@@ -51,13 +51,13 @@ export function OrgSetupForm({ userId }: OrgSetupFormProps) {
                 city: city || null,
             } as never)
             .select('id')
-            .single()
+            .single() as { data: { id: string } | null; error: Error | null }
 
-        if (orgError) {
-            if (orgError.message.includes('duplicate')) {
+        if (orgError || !org) {
+            if (orgError?.message.includes('duplicate')) {
                 setError('An organization with this name already exists')
             } else {
-                setError(orgError.message)
+                setError(orgError?.message || 'Failed to create organization')
             }
             return
         }

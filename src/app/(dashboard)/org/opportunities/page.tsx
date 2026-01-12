@@ -28,7 +28,7 @@ export default async function OrgOpportunitiesPage() {
         .from('organization_members')
         .select('organization_id')
         .eq('user_id', user.id)
-        .single()
+        .single() as { data: { organization_id: string } | null }
 
     if (!membership?.organization_id) {
         redirect('/org/setup')

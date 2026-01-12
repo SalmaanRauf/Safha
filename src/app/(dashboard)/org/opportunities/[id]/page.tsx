@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps) {
         .from('opportunities')
         .select('title')
         .eq('id', params.id)
-        .single()
+        .single() as { data: { title: string } | null }
 
     return {
         title: `Manage: ${data?.title || 'Opportunity'}`,
@@ -50,7 +50,7 @@ export default async function OrgOpportunityDetailPage({ params }: PageProps) {
         .from('organization_members')
         .select('organization_id')
         .eq('user_id', user.id)
-        .single()
+        .single() as { data: { organization_id: string } | null }
 
     if (!membership?.organization_id) {
         redirect('/org/setup')

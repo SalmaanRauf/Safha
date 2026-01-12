@@ -52,7 +52,17 @@ export default async function AdminUsersPage({
         query = query.eq('role', searchParams.role)
     }
 
-    const { data: users, error: usersError } = await query.limit(50)
+    const { data: users, error: usersError } = await query.limit(50) as {
+        data: Array<{
+            id: string
+            email: string | null
+            full_name: string | null
+            role: string
+            phone: string | null
+            created_at: string
+        }> | null
+        error: Error | null
+    }
 
     // Get role counts
     const { count: volunteerCount } = await supabase

@@ -29,7 +29,7 @@ export default async function NewOpportunityPage() {
         .from('organization_members')
         .select('organization_id, role')
         .eq('user_id', user.id)
-        .single()
+        .single() as { data: { organization_id: string; role: string } | null }
 
     if (!membership?.organization_id) {
         redirect('/org/setup')

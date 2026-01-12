@@ -54,14 +54,14 @@ export default async function AdminDashboardPage() {
         .from('organizations')
         .select('id, name, slug, is_verified, created_at')
         .order('created_at', { ascending: false })
-        .limit(5)
+        .limit(5) as { data: Array<{ id: string; name: string; slug: string; is_verified: boolean; created_at: string }> | null }
 
     // Fetch recent users
     const { data: recentUsers } = await supabase
         .from('profiles')
         .select('id, email, full_name, role, created_at')
         .order('created_at', { ascending: false })
-        .limit(5)
+        .limit(5) as { data: Array<{ id: string; email: string | null; full_name: string | null; role: string; created_at: string }> | null }
 
     const pendingOrgs = recentOrgs?.filter(org => !org.is_verified) || []
 

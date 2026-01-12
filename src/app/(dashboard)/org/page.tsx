@@ -36,7 +36,7 @@ export default async function OrgDashboardPage() {
         .from('profiles')
         .select('role')
         .eq('id', user.id)
-        .single()
+        .single() as { data: { role: string } | null }
 
     if (profile?.role !== 'organization') {
         redirect('/dashboard')
@@ -55,7 +55,7 @@ export default async function OrgDashboardPage() {
       )
     `)
         .eq('user_id', user.id)
-        .single()
+        .single() as { data: { role: string; organizations: { id: string; name: string; slug: string; is_verified: boolean } | null } | null }
 
     // If no organization, show onboarding
     if (!membership?.organizations) {

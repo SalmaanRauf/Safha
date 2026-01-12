@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps) {
         .from('opportunities')
         .select('title')
         .eq('id', params.id)
-        .single()
+        .single() as { data: { title: string } | null }
 
     return {
         title: `Edit: ${data?.title || 'Opportunity'}`,
@@ -41,7 +41,7 @@ export default async function EditOpportunityPage({ params }: PageProps) {
         .from('organization_members')
         .select('organization_id, role')
         .eq('user_id', user.id)
-        .single()
+        .single() as { data: { organization_id: string; role: string } | null }
 
     if (!membership?.organization_id) {
         redirect('/org/setup')
@@ -53,26 +53,27 @@ export default async function EditOpportunityPage({ params }: PageProps) {
         .select('*')
         .eq('id', params.id)
         .eq('organization_id', membership.organization_id)
-        .single()
+        .single() as {
+            data: {
+                id: string
+                title: string
+                description: string
+                short_description: string | null
+                category: string
+                skills_needed: string[]
+                location_type: string
+                address: string | null
+                city: string | null
+                start_date: string
+                end_date: string | null
+                max_volunteers: number | null
+                status: string
+            } | null
+            error: Error | null
+        }
 
     if (error || !oppData) {
         notFound()
-    }
-
-    const opportunity = oppData as {
-        id: string
-        title: string
-        description: string
-        short_description: string | null
-        category: string
-        skills_needed: string[]
-        location_type: string
-        address: string | null
-        city: string | null
-        start_date: string
-        end_date: string | null
-        max_volunteers: number | null
-        status: string
     }
 
     return (
@@ -91,7 +92,7 @@ export default async function EditOpportunityPage({ params }: PageProps) {
                     Edit Opportunity
                 </h1>
                 <p className="text-[hsl(var(--text-secondary))]">
-                    Update the details for &quot;{opportunity.title}&quot;
+                    Update the details for &quot;{oppData.title}&quot;
                 </p>
             </div>
 
@@ -99,10 +100,11 @@ export default async function EditOpportunityPage({ params }: PageProps) {
                 <CardContent className="pt-6">
                     <OpportunityForm
                         organizationId={membership.organization_id}
-                        initialData={opportunity}
+                        initialData={oppData}
                     />
                 </CardContent>
             </Card>
         </div>
     )
 }
+
